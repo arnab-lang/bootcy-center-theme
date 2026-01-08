@@ -237,6 +237,7 @@ button { cursor: pointer; font-family: inherit; }
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    width: 100%;
 }
 
 .banner-item {
@@ -508,7 +509,6 @@ button { cursor: pointer; font-family: inherit; }
 } }
 
 /* --- 6. FOOTER --- */
-footer { background: #222; color: #aaa; padding: 60px 0 20px; }
 .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 40px; }
 .footer-col h4 { color: #fff; text-transform: uppercase; margin-bottom: 20px; font-size: 14px; }
 .footer-col li { margin-bottom: 10px; font-size: 13px; }
@@ -830,8 +830,8 @@ footer { background: #222; color: #aaa; padding: 60px 0 20px; }
 }
 .product-slider .swiper-button-prev,
 .product-slider .swiper-button-next {
-    top: 40%;
-    transform: translateY(-60%);
+    top: 30%;
+    transform: translateY(-70%);
 }
 .product-slider .swiper-button-prev::after,
 .product-slider .swiper-button-next::after {
@@ -860,11 +860,65 @@ section.categories-slider-section {
 section.categories-slider-section,
 .products-section.slider,
 .swiper.product-slider.swiper-initialized.swiper-horizontal {
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: hidden;
 }
 .three-grid {
     padding: 20px;
     display: flex;
     flex-direction: row;
+}
+
+footer{
+    background: #fff;
+   
+}
+
+
+/* --- HOVER IMAGE SWAP --- */
+
+/* Ensure the second image sits on top of the first */
+.product-img-wrap .hover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1; /* Sits above main image, but below buttons */
+}
+
+/* On hover, fade it in to full opacity */
+.product-card:hover .product-img-wrap .hover-img {
+    opacity: 1;
+}
+
+/* Ensure action buttons stay clickable (z-index 5 is already in your CSS, but good to verify) */
+.product-card .product-actions, 
+.product-card .wishlist-btn {
+    z-index: 10; 
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    
+    .products-section.slider {
+        width: 100%!important;
+        max-height: 500px!important;
+        overflow-y: unset!important;
+    }
+    .products-section.slider .product-slider{
+        width: 325px!important;
+    }
+
+   .products-section.slider .swiper{
+        width: 325px!important;
+    }
+    .product-slider .swiper-button-prev,
+    .product-slider .swiper-button-next {
+        top: 35%;
+        transform: translateY(-65%);
+    }
 }
