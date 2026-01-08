@@ -218,30 +218,6 @@ get_header(); ?>
         </div>
     </section>
 
-
-    <section class="three-grid-section">
-        <div class="container">
-            <div class="three-grid">
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
-                    <h3 class="feature-title">Free Shipping On All Orders</h3>
-                    <p class="feature-desc">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fa fa-heart" aria-hidden="true"></i></div>
-                    <h3 class="feature-title">Amazing Customer Service</h3>
-                    <p class="feature-desc">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
-                    <h3 class="feature-title">No Customs or Duty Fees!</h3>
-                    <p class="feature-desc">We pay these fees so you don't have to! The total billed at checkout is the final amount you pay, inclusive of VAT, with no additional charges at the time of delivery!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     <section class="categories-slider-section">
         <div class="section-header">
             <h2>Shop by Category</h2>
@@ -283,6 +259,74 @@ get_header(); ?>
             </div>
         </div>
     </section>
+
+    <section class="three-grid-section">
+        <div class="container">
+            <div class="three-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <h3 class="feature-title">Free Shipping On All Orders</h3>
+                    <p class="feature-desc">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa fa-heart" aria-hidden="true"></i></div>
+                    <h3 class="feature-title">Amazing Customer Service</h3>
+                    <p class="feature-desc">Get Free Shipping on all orders over $75 and free returns to our UK returns centre! Items are dispatched from the US and will arrive in 5-8 days.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
+                    <h3 class="feature-title">No Customs or Duty Fees!</h3>
+                    <p class="feature-desc">We pay these fees so you don't have to! The total billed at checkout is the final amount you pay, inclusive of VAT, with no additional charges at the time of delivery!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-news-section">
+        <div class="section-header">
+            <h2>Latest News</h2>
+        </div>
+        <div class="container">
+            <div class="news-grid">
+                <?php
+                $news_args = array(
+                    'post_type'      => 'post',
+                    'posts_per_page' => 4,
+                    'post_status'    => 'publish',
+                );
+                $news_query = new WP_Query( $news_args );
+                if ( $news_query->have_posts() ) :
+                    while ( $news_query->have_posts() ) : $news_query->the_post(); ?>
+                        <div class="news-card">
+                            <div class="news-img-wrap">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php if ( has_post_thumbnail() ) : ?>
+                                        <?php the_post_thumbnail( 'medium' ); ?>
+                                    <?php else : ?>
+                                        <img src="<?php echo get_template_directory_uri() . '/assets/images/placeholder.png'; ?>" alt="<?php the_title_attribute(); ?>">
+                                    <?php endif; ?>
+                                    <div class="news-date">
+                                        <span class="day"><?php echo get_the_date('d'); ?></span>
+                                        <span class="month"><?php echo get_the_date('M'); ?></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="news-details">
+                                <a href="<?php the_permalink(); ?>"><h3 class="news-title"><?php the_title(); ?></h3></a>
+                                <div class="news-excerpt"><?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?></div>
+                            </div>
+                        </div>
+                    <?php endwhile;
+                    wp_reset_postdata();
+                endif;
+                ?>
+            </div>
+        </div>
+    </section>
+
+
+
+
 
 
     <div class="modal-overlay" id="quickViewModal">
