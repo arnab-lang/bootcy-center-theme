@@ -5,7 +5,7 @@
 
 function hello_elementor_child_enqueue_scripts() {
     // 1. Parent & Child Styles
-    wp_enqueue_style( 'hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.css', array('hello-elementor-theme-style'), '1.0.0' );
+    wp_enqueue_style( 'hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.css', array('hello-elementor-theme-style'), time());
 
     // 2. External Libs
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Dancing+Script:wght@400;700&display=swap', array(), null);
@@ -201,3 +201,146 @@ function flatsome_customize_register( $wp_customize ) {
     }
 }
 add_action( 'customize_register', 'flatsome_customize_register' );
+
+// 1. Hide default price & short description — SAFE VERSION
+add_action('wp_head', 'hide_default_variable_product_info');
+function hide_default_variable_product_info() {
+    // Only run on single product pages
+    if (!is_product()) {
+        return;
+    }
+
+    // Get the product ID safely
+    $product_id = get_the_ID();
+    if (!$product_id) {
+        return;
+    }
+
+    // Get product object
+    $product = wc_get_product($product_id);
+    if (!$product || !is_a($product, 'WC_Product')) {
+        return;
+    }
+
+    // Only apply to variable products
+    if (!$product->is_type('variable')) {
+        return;
+    }
+
+    // Hide default price and description
+    echo '<style>
+        
+        .woocommerce-product-details__short-description {
+            display: none !important;
+        }
+        .woocommerce-variation-description {
+            display: none !important;
+        }
+        .summary.entry-summary .price {
+            display: none !important;
+        }
+
+        .summary.entry-summary .custom-variation-price .price {
+            display: inline !important;
+        }
+    </style>';
+}
+// 2. Inject JS only if valid variable product
+add_action('wp_footer', 'custom_variation_preselect_js');
+function custom_variation_preselect_js() {
+    if (!is_product()) return;
+
+    $product_id = get_the_ID();
+    if (!$product_id) return;
+
+    $product = wc_get_product($product_id);
+    if (!$product || !is_a($product, 'WC_Product') || !$product->is_type('variable')) {
+        return;
+    }
+
+    // Now it's safe to output JS
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var form = $('form.variations_form');
+        if (!form.length) return;
+
+        var variations = form.data('product_variations');
+        if (!variations || variations.length === 0) return;
+
+        setTimeout(function() {
+            var firstVar = variations[0];
+            $.each(firstVar.attributes, function(attrName, attrValue) {
+                var select = $('select[data-attribute_name="' + attrName + '"]');
+                if (select.length && attrValue) {
+                    select.val(attrValue).trigger('change');
+                }
+            });
+            form.trigger('woocommerce_variation_select_change');
+        }, 300);
+
+        form.on('show_variation', function(event, variation) {
+            $('.custom-variation-price, .custom-variation-desc').remove();
+
+            if (variation.price_html) {
+                $('.product_title').first().after('<div class="custom-variation-price">' + variation.price_html + '</div>');
+            }
+
+            // Note: WooCommerce uses 'description' for variation description in newer versions
+            var desc = variation.variation_description || variation.description || '';
+            if (desc) {
+                $('.custom-variation-price').after('<div class="custom-variation-desc">' + desc + '</div>');
+            } else {
+                $('.custom-variation-price').after('<div class="custom-variation-desc">Select an option to see details.</div>');
+            }
+        });
+
+        form.on('hide_variation', function() {
+            $('.custom-variation-price, .custom-variation-desc').fadeOut(function() { $(this).remove(); });
+        });
+    });
+    </script>
+    <?php
+}
+
+add_action('wp_footer', 'auto_select_first_variation_js');
+function auto_select_first_variation_js() {
+    if (!is_product()) return;
+    ?>
+    <script>
+    jQuery(document).ready(function($) {
+        setTimeout(function() {
+            var $realForm = $('form.variations_form').has('select[name^="attribute_"]');
+            if ($realForm.length === 0) return;
+
+            var variations = $realForm.data('product_variations');
+            if (!variations || !Array.isArray(variations)) {
+                try {
+                    var raw = $realForm.attr('data-product_variations');
+                    if (raw) variations = JSON.parse(raw.replace(/&quot;/g, '"'));
+                } catch (e) {
+                    return;
+                }
+            }
+            if (!variations || variations.length === 0) return;
+
+            var first = variations.find(v => v.variation_is_active && v.variation_is_visible);
+            if (!first) return;
+
+            var changed = false;
+            $.each(first.attributes, function(attrName, attrValue) {
+                var $select = $realForm.find('select[name="' + attrName + '"]');
+                if ($select.length && !$select.val()) {
+                    $select.val(attrValue).trigger('change');
+                    changed = true;
+                }
+            });
+
+            if (changed) {
+                $realForm.trigger('woocommerce_variation_select_change');
+            }
+        }, 800);
+    });
+    </script>
+    <?php
+}

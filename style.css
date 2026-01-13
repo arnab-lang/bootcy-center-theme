@@ -837,6 +837,7 @@ button { cursor: pointer; font-family: inherit; }
 @media (max-width: 768px) {
     .product-category-archive .shop-wrap {
         flex-direction: column;
+        /* margin-left: -30px; */
     }
     .product-category-archive .shop-sidebar {
         max-width: none;
@@ -1437,6 +1438,192 @@ footer{
 @media (max-width: 600px) {
     .product-category-archive .products-four-col-section .four-cols {
         grid-template-columns: 1fr;
+    }
+}
+
+.single-product .woocommerce-breadcrumb {
+    display: none;
+}
+
+.single-product .summary.entry-summary  nav.woocommerce-breadcrumb  {
+    display: block;
+    font-size: 18px;
+}
+
+.single-product .product{
+    margin-top: 40px;
+}
+
+.single-product .summary.entry-summary {
+    color: #000;
+}
+
+.woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price, .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price{
+    color: #000;
+    font-size: 22px;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.woocommerce div.product form.cart .variations,
+table tbody>tr:nth-child(odd)>td, table tbody>tr:nth-child(odd)>th{
+    background-color: #fff;
+}
+
+.woocommerce div.product form.cart .variations td, .woocommerce div.product form.cart .variations th{
+    vertical-align: middle;
+}
+
+.woocommerce div.product form.cart .variations select{
+    margin-bottom: 0px;
+}
+.woocommerce div.product form.cart .variations{
+    position: relative;
+}
+.variations a.reset_variations {
+    position: absolute;
+    color: #000 !important;
+    font-size: 16px !important;
+    top: -30px;
+    right: 26px;
+}
+
+button.single_add_to_cart_button.button.alt.disabled.wc-variation-selection-needed {
+    height: 46px;
+    display: block;
+}
+
+.woocommerce .quantity .qty{
+    outline: none;
+}
+
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt.disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt.disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt:disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt:disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt:disabled[disabled], .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt:disabled[disabled]:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt.disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt.disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt:disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt:disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt:disabled[disabled], .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt:disabled[disabled]:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt.disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt.disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:disabled[disabled], .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:disabled[disabled]:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt.disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt.disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt:disabled, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt:disabled:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt:disabled[disabled], .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt:disabled[disabled]:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt.disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt.disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt:disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt:disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt:disabled[disabled], :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt:disabled[disabled]:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt.disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt.disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt:disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt:disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt:disabled[disabled], :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt:disabled[disabled]:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt.disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt.disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt:disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt:disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt:disabled[disabled], :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt:disabled[disabled]:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt.disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt.disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt:disabled, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt:disabled:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt:disabled[disabled], :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt:disabled[disabled]:hover{
+    background-color: var(--accent);
+    color: #222;
+    border: 1px solid var(--accent);
+    cursor: not-allowed;
+}
+
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt{
+    background-color: var(--accent);
+    color: #222;
+    border-radius: 8px;
+    padding: 12px 28px;
+    border: 1px solid var(--accent);
+    height: 46px;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: transform 120ms ease, filter 120ms ease;
+}
+
+.woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) #respond input#submit.alt:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) a.button.alt:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) button.button.alt:hover, .woocommerce:where(body:not(.woocommerce-block-theme-has-button-styles)) input.button.alt:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce #respond input#submit.alt:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce a.button.alt:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce button.button.alt:hover, :where(body:not(.woocommerce-block-theme-has-button-styles)):where(:not(.edit-post-visual-editor)) .woocommerce input.button.alt:hover{
+    transform: translateY(-2px);
+    filter: brightness(0.94);
+    color: #000;
+    background-color: transparent;
+}
+
+.product_meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.product_meta span.sku_wrapper, 
+.product_meta span.posted_in, 
+.product_meta span.tagged_as {
+    padding: 10px 0px;
+    border-top: 1px dashed #ddd;
+}
+
+.woocommerce div.product form.cart .variations, table tbody>tr:nth-child(odd)>td, table tbody>tr:nth-child(odd)>th {
+    vertical-align: middle;
+}
+.variations th, .variations td{
+    vertical-align: middle;
+}
+
+
+.swiper-product-gallery {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.mySwiper2 {
+	height: 400px;
+	width: 100%;
+}
+
+.mySwiper {
+	height: 80px;
+	margin-top: 10px;
+}
+
+.mySwiper .swiper-slide {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+	opacity: 1;
+	border: 2px solid #000;
+}
+
+.swiper-product-gallery {
+    display: inline-block;
+    max-width: 500px;
+    /* margin: 0 auto; */
+}
+
+
+/* Example: Smaller arrows below thumbnails */
+.mySwiper {
+  position: relative;
+  padding: 10px 30px; /* make room for arrows */
+}
+
+.swiper-button-prev-thumbs,
+.swiper-button-next-thumbs {
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  --swiper-navigation-size: 20px;
+}
+
+.swiper-button-prev-thumbs {
+  left: 5px;
+}
+
+.swiper-button-next-thumbs {
+  right: 5px;
+}
+
+.mySwiper .swiper-button-next, .mySwiper .swiper-button-prev{
+    top: var(--swiper-navigation-top-offset, 60%);
+}
+
+.woocommerce table.shop_attributes th,
+.woocommerce-product-attributes-item__value{
+    border-left-color: #e8e8e8;
+    border-right-color: #e8e8e8;
+}
+
+.woocommerce-product-attributes-item__value p{
+    padding-left: 20px!important;
+}
+div#tab-additional_information h2{
+    display: none;
+}
+
+.woocommerce span.onsale{
+    background-color: var(--accent);
+    color: #000;
+}
+
+@media screen and (max-width: 768px) {
+    .swiper-product-gallery {
+        max-width: 100%;
     }
 }
 
